@@ -1,0 +1,13 @@
+version: '3'
+services:
+  node:
+    build:
+      dockerfile: Dockerfile.dev
+      context: .
+    ports:
+      - 5000:5000
+    environment:
+      PORT: 5000
+    volumes:
+      - /app/node_modules
+      - .:/app
