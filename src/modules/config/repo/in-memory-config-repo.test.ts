@@ -3,7 +3,7 @@ import InMemoryConfigRepo from "./in-memory-config-repo"
 
 it("should run test", ()=>{
     expect(true).toBe(true)
-})
+});
 
 
 describe("In memory config repository", () =>{
@@ -15,30 +15,30 @@ describe("In memory config repository", () =>{
         const value = await repo.get("notExistingKey");
         expect(value).toEqual({})
 
-    })
+    });
 
-     // @ts-ignore
-    const testSetAndGet = async (myKey, myData) => {
+
+    const testSetAndGet = async (myKey: string, myData: any) => {
         const repo = createNewRepo();
 
         await repo.set(myKey, myData);
 
-        const retrievedValue = await repo.get(myKey)
+        const retrievedValue = await repo.get(myKey);
         expect(retrievedValue).toEqual(myData)
-    }
+    };
 
     it("should set and return simple value",async () => {
         const myData = "my data";
         const myKey = "myKey";
         await testSetAndGet(myKey, myData);
 
-    })
+    });
 
     it("should set and get an xpath value", async () =>{
         const myData = "my data";
         const myKey = "path.key";
         await testSetAndGet(myKey, myData)
-    })
+    });
 
     it("should set and get an object with xpath value", async () =>{
         const myData = {
@@ -46,7 +46,7 @@ describe("In memory config repository", () =>{
         };
         const myKey = "path.key";
         await testSetAndGet(myKey, myData)
-    })
+    });
 
     it("should set  multiple and get an object with xpath value", async () =>{
         const myData = '';
@@ -71,4 +71,4 @@ describe("In memory config repository", () =>{
 
 
 
-})
+});

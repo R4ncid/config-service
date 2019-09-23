@@ -14,16 +14,15 @@ export default class InMemoryConfigRepo implements ConfigRepo{
     }
 
     async set(key: string, value: string | number): Promise<void> {
-        const recursiveSet = (keys:string[], currentData:{}) => {
-            const [key, ...remainingKeys] = keys
+        const recursiveSet = (keys:string[], currentData: {[k: string]: any}) => {
+            const [key, ...remainingKeys] = keys;
             if(remainingKeys.length === 0){
-                // @ts-ignore
                 currentData[key] = value;
                 return currentData
             }
-            // @ts-ignore
+
             const currentKeyData =  currentData[key] || {};
-            // @ts-ignore
+
             currentData[key] = Object.assign(currentKeyData, recursiveSet(remainingKeys, currentKeyData))
             return currentData;
         }
